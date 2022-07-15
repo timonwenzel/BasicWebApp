@@ -37,6 +37,54 @@ public class QueryProcessor {
             }
 
             return String.valueOf(result);
+        } else if (query.contains("largest")){
+            String numbersOnly = query.replaceAll("[^\\d]", " ");
+            numbersOnly = numbersOnly.trim();
+            numbersOnly = numbersOnly.replaceAll(" +", " ");
+
+            String[] numbersStr = numbersOnly.split(" ");
+            int[] numbersInt = new int[2];
+            int counter = 0;
+
+            for (String number : numbersStr) {
+                numbersInt[counter] = Integer.parseInt(number);
+                counter++;
+            }
+
+            int result = 0;
+
+            for (int number : numbersInt) {
+                if (result < number) {
+                    result = number;
+                }
+            }
+
+            return String.valueOf(result);
+        } else if (query.contains("multiplied")){
+            String numbersOnly = query.replaceAll("[^\\d]", " ");
+            numbersOnly = numbersOnly.trim();
+            numbersOnly = numbersOnly.replaceAll(" +", " ");
+
+            String[] numbersStr = numbersOnly.split(" ");
+            int[] numbersInt = new int[2];
+            int counter = 0;
+
+            for (String number : numbersStr) {
+                numbersInt[counter] = Integer.parseInt(number);
+                counter++;
+            }
+
+            int result = 0;
+
+            for (int number : numbersInt) {
+                if (result == 0) {
+                    result = number;
+                } else {
+                    result = result * number;
+                }
+            }
+
+            return String.valueOf(result);
         } else { // TODO extend the programm here
             return "";
         }
