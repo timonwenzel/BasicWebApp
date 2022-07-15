@@ -16,7 +16,7 @@ public class QueryProcessor {
                     "writer in the English language and the world's pre-eminent dramatist.";
         } else if (query.contains("name")) {
             return "timon";
-        } else if (query.contains("+")) {
+        } else if (query.contains("plus")) {
             String numbersOnly = query.replaceAll("[^\\d]", " ");
             numbersOnly = numbersOnly.trim();
             numbersOnly = numbersOnly.replaceAll(" +", " ");
