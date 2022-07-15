@@ -2,6 +2,9 @@ package de.tum.in.ase.eist;
 
 import org.springframework.stereotype.Service;
 
+import java.sql.Array;
+import java.util.Locale;
+
 @Service
 public class QueryProcessor {
 
@@ -12,7 +15,28 @@ public class QueryProcessor {
                     "English poet, playwright, and actor, widely regarded as the greatest " +
                     "writer in the English language and the world's pre-eminent dramatist.";
         } else if (query.contains("name")) {
-           return "timon";
+            return "timon";
+        } else if (query.contains("+")) {
+            String numbersOnly = query.replaceAll("[^\\d]", " ");
+            numbersOnly = numbersOnly.trim();
+            numbersOnly = numbersOnly.replaceAll(" +", " ");
+
+            String[] numbersStr = numbersOnly.split(" ");
+            int[] numbersInt = new int[2];
+            int counter = 0;
+
+            for (String number : numbersStr) {
+                numbersInt[counter] = Integer.parseInt(number);
+                counter++;
+            }
+
+            int result = 0;
+
+            for (int number : numbersInt) {
+                result = +number;
+            }
+
+            return String.valueOf(result);
         } else { // TODO extend the programm here
             return "";
         }
